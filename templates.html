@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder - Templates</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #template-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .template {
+            cursor: pointer;
+        }
+
+        #preview-container {
+            margin-top: 20px;
+        }
+
+        /* Define styles for your templates here */
+        
+    </style>
+</head>
+<body>
+    <h1>Choose a Template</h1>
+    
+    <div id="template-container">
+        <!-- Template thumbnails or buttons go here -->
+        <div class="template" onclick="selectTemplate(1)">
+            <img src="https://raw.githubusercontent.com/prabinmagar/resume-builder-using-vanilla-javascript/master/assets/images/dublin-resume-templates.avif" alt="Template 1">
+        </div>
+        <div class="template" onclick="selectTemplate(2)">
+            <img src="template2-thumbnail.jpg" alt="Template 2">
+        </div>
+        <!-- Add more templates as needed -->
+    </div>
+
+  
+
+    
+
+    <div id="preview-container">
+        <!-- Preview of the selected template with dynamic content -->
+    </div>
+
+    <script>
+        function selectTemplate(templateId) {
+            // Remove previous template classes
+            document.getElementById('preview-container').className = '';
+
+            // Add the selected template class
+            document.getElementById('preview-container').classList.add('template' + templateId);
+        }
+
+        function generateResume() {
+            // Get user-inputted data
+            const name = document.getElementById('name').value;
+            const education = document.getElementById('education').value;
+            const experience = document.getElementById('experience').value;
+            const skills = document.getElementById('skills').value;
+
+            // Get the selected template class
+            const templateClass = document.getElementById('preview-container').className;
+
+            // Generate and display the preview with dynamic content
+            const previewContainer = document.getElementById('preview-container');
+            previewContainer.innerHTML = `
+                <h2>${name}</h2>
+                <p>Education: ${education}</p>
+                <p>Experience: ${experience}</p>
+                <p>Skills: ${skills}</p>
+            `;
+
+            // Add the selected template class to the preview
+            previewContainer.classList.add(templateClass);
+        }
+    </script>
+</body>
+</html>
